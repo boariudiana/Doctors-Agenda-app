@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Klu+E/y7hThWjBSZjreq1re6FMk4gXAJdVA4f6FuTzAlIDar4v/MWa8vHXZe3mBn0+O53uOt5thXC1opUiPUlA==",
+  "dgSpecHash": "xlE2OQEVwajNf9XBT9efLyEbNcYzeyJwxJpQ+wBY8LNZcpfebvcdY0Bd6xi+uDqvvWXHWErrSkPZFIJKKgnQWQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Flavius\\source\\repos\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
+  "projectFilePath": "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Flavius\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.4\\microsoft.aspnetcore.cryptography.internal.3.1.4.nupkg.sha512",
     "C:\\Users\\Flavius\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.4\\microsoft.aspnetcore.cryptography.keyderivation.3.1.4.nupkg.sha512",
