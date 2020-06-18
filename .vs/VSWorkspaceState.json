@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\DoctorsAgendaApp",
-    "\\DoctorsAgendaApp\\DoctorsAgenda",
-    "\\DoctorsAgendaApp\\DoctorsAgenda\\Controllers"
+    "\\DoctorsAgendaApp\\DoctorsAgenda"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\DoctorsAgendaApp\\DoctorsAgendaApp.sln",
   "PreviewInSolutionExplorer": false
 }

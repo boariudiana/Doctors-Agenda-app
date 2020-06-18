@@ -291,9 +291,6 @@ C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\bin\Debug\netcoreapp3.1\run
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.csprojAssemblyReference.cache
-C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.csproj.CoreCompileInputs.cache
-C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cs
-C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cache
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.RazorAssemblyInfo.cache
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.RazorAssemblyInfo.cs
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.AssemblyInfoInputs.cache
@@ -324,3 +321,7 @@ C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\sta
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.dll
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.pdb
 C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.genruntimeconfig.cache
+C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug.dll
+C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.csproj.CoreCompileInputs.cache
+C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cs
+C:\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cache

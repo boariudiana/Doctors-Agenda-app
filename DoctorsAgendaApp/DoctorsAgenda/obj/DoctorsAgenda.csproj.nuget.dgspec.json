@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[3.1.4, )"
             },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.2, )"

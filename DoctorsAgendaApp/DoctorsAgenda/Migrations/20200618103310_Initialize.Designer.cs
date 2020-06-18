@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorsAgenda.Migrations
 {
     [DbContext(typeof(DoctorsAgendaContext))]
-    [Migration("20200514143047_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20200618103310_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
