@@ -10,16 +10,85 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
+    <Compile Remove="Migrations\20200711021927_initial.cs" />
+    <Compile Remove="Migrations\20200711021927_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200713090042_ModelsUpdate.cs" />
+    <Compile Remove="Migrations\20200713090042_ModelsUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200713091626_ModelUpdate.cs" />
+    <Compile Remove="Migrations\20200713091626_ModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200713094435_ModelUpdate.cs" />
+    <Compile Remove="Migrations\20200713094435_ModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200713102440_ModelsChange.cs" />
+    <Compile Remove="Migrations\20200713102440_ModelsChange.Designer.cs" />
+    <Compile Remove="Migrations\20200713110241_Modelchange.cs" />
+    <Compile Remove="Migrations\20200713110241_Modelchange.Designer.cs" />
+    <Compile Remove="Migrations\20200713110550_modelchanges.cs" />
+    <Compile Remove="Migrations\20200713110550_modelchanges.Designer.cs" />
+    <Compile Remove="Migrations\20200715072937_ModelUpdates.cs" />
+    <Compile Remove="Migrations\20200715072937_ModelUpdates.Designer.cs" />
+    <Compile Remove="Migrations\20200715074655_ModelUpdates.cs" />
+    <Compile Remove="Migrations\20200715074655_ModelUpdates.Designer.cs" />
+    <Compile Remove="Migrations\20200715084020_ModelUpdate.cs" />
+    <Compile Remove="Migrations\20200715084020_ModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200715085843_ModelUpdate.cs" />
+    <Compile Remove="Migrations\20200715085843_ModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200715090655_ModelUpdate.cs" />
+    <Compile Remove="Migrations\20200715090655_ModelUpdate.Designer.cs" />
+    <Compile Remove="Migrations\20200715091744_ModelChange.cs" />
+    <Compile Remove="Migrations\20200715091744_ModelChange.Designer.cs" />
+    <Compile Remove="Migrations\20200715095318_ModelChanges.cs" />
+    <Compile Remove="Migrations\20200715095318_ModelChanges.Designer.cs" />
+    <Compile Remove="Migrations\20200715100248_modelChanges.cs" />
+    <Compile Remove="Migrations\20200715100248_modelChanges.Designer.cs" />
+    <Compile Remove="Migrations\20200715100952_modelchanges.cs" />
+    <Compile Remove="Migrations\20200715100952_modelchanges.Designer.cs" />
+    <Compile Remove="Migrations\20200715101309_modelChanges.cs" />
+    <Compile Remove="Migrations\20200715101309_modelChanges.Designer.cs" />
+    <Compile Remove="Migrations\20200717113541_MyAgendaClassModified.cs" />
+    <Compile Remove="Migrations\20200717113541_MyAgendaClassModified.Designer.cs" />
+    <Compile Remove="Migrations\20200717114203_MyAgendaClassModified.cs" />
+    <Compile Remove="Migrations\20200717114203_MyAgendaClassModified.Designer.cs" />
+    <Compile Remove="Migrations\20200717114443_MyagendaIdRemoved.cs" />
+    <Compile Remove="Migrations\20200717114443_MyagendaIdRemoved.Designer.cs" />
+    <Compile Remove="Migrations\20200717115035_MyAgendachanged.cs" />
+    <Compile Remove="Migrations\20200717115035_MyAgendachanged.Designer.cs" />
+    <Compile Remove="Migrations\20200718164152_PatientName.cs" />
+    <Compile Remove="Migrations\20200718164152_PatientName.Designer.cs" />
+    <Compile Remove="Migrations\20200718170010_PatientName.cs" />
+    <Compile Remove="Migrations\20200718170010_PatientName.Designer.cs" />
+    <Compile Remove="Migrations\20200718171637_PatientName.cs" />
+    <Compile Remove="Migrations\20200718171637_PatientName.Designer.cs" />
+    <Compile Remove="Migrations\20200718172140_PatientName.cs" />
+    <Compile Remove="Migrations\20200718172140_PatientName.Designer.cs" />
+    <Compile Remove="Migrations\20200718172526_PatientName.cs" />
+    <Compile Remove="Migrations\20200718172526_PatientName.Designer.cs" />
+    <Compile Remove="Migrations\20200718180825_PatientId.cs" />
+    <Compile Remove="Migrations\20200718180825_PatientId.Designer.cs" />
+    <Compile Remove="Migrations\20200718181201_initial.cs" />
+    <Compile Remove="Migrations\20200718181201_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200723082620_UserSecondTableDrop.cs" />
+    <Compile Remove="Migrations\20200723082620_UserSecondTableDrop.Designer.cs" />
+    <Compile Remove="Migrations\20200723092403_userRef.cs" />
+    <Compile Remove="Migrations\20200723092403_userRef.Designer.cs" />
+    <Compile Remove="Migrations\20200724120943_IdForeignKeyChanged.cs" />
+    <Compile Remove="Migrations\20200724120943_IdForeignKeyChanged.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

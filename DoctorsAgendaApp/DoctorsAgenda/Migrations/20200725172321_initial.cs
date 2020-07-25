@@ -22,11 +22,11 @@ namespace DoctorsAgenda.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -43,7 +43,8 @@ namespace DoctorsAgenda.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.UniqueConstraint("AK_User_UserName", x => x.UserName);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,6 +69,27 @@ namespace DoctorsAgenda.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Agenda",
+                columns: table => new
+                {
+                    AgendaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AgendasName = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Agenda", x => x.AgendaId);
+                    table.UniqueConstraint("AK_Agenda_AgendasName", x => x.AgendasName);
+                    table.ForeignKey(
+                        name: "FK_Agenda_User_UserName",
+                        column: x => x.UserName,
+                        principalTable: "User",
+                        principalColumn: "UserName",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -81,9 +103,9 @@ namespace DoctorsAgenda.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        name: "FK_AspNetUserClaims_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -101,9 +123,9 @@ namespace DoctorsAgenda.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        name: "FK_AspNetUserLogins_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -125,9 +147,9 @@ namespace DoctorsAgenda.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        name: "FK_AspNetUserRoles_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -145,12 +167,101 @@ namespace DoctorsAgenda.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        name: "FK_AspNetUserTokens_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Calendar",
+                columns: table => new
+                {
+                    CalendarId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CalendarsName = table.Column<string>(nullable: false),
+                    AgendasName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calendar", x => x.CalendarId);
+                    table.UniqueConstraint("AK_Calendar_CalendarsName", x => x.CalendarsName);
+                    table.ForeignKey(
+                        name: "FK_Calendar_Agenda_AgendasName",
+                        column: x => x.AgendasName,
+                        principalTable: "Agenda",
+                        principalColumn: "AgendasName",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Patient",
+                columns: table => new
+                {
+                    PatientId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PatientName = table.Column<string>(nullable: false),
+                    MedicalStatus = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    AgendasName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patient", x => x.PatientId);
+                    table.ForeignKey(
+                        name: "FK_Patient_Agenda_AgendasName",
+                        column: x => x.AgendasName,
+                        principalTable: "Agenda",
+                        principalColumn: "AgendasName",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Appointment",
+                columns: table => new
+                {
+                    AppointmentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDateTime = table.Column<DateTime>(nullable: false),
+                    EndDateTime = table.Column<DateTime>(nullable: false),
+                    TypeOfService = table.Column<string>(nullable: true),
+                    PatientName = table.Column<string>(nullable: false),
+                    CalendarsName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointment", x => x.AppointmentId);
+                    table.ForeignKey(
+                        name: "FK_Appointment_Calendar_CalendarsName",
+                        column: x => x.CalendarsName,
+                        principalTable: "Calendar",
+                        principalColumn: "CalendarsName",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agenda_UserName",
+                table: "Agenda",
+                column: "UserName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agenda_AgendasName_UserName",
+                table: "Agenda",
+                columns: new[] { "AgendasName", "UserName" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointment_CalendarsName",
+                table: "Appointment",
+                column: "CalendarsName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointment_StartDateTime_EndDateTime_PatientName_CalendarsName",
+                table: "Appointment",
+                columns: new[] { "StartDateTime", "EndDateTime", "PatientName", "CalendarsName" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -180,20 +291,66 @@ namespace DoctorsAgenda.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Calendar_AgendasName",
+                table: "Calendar",
+                column: "AgendasName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Calendar_AgendasName_CalendarsName",
+                table: "Calendar",
+                columns: new[] { "AgendasName", "CalendarsName" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patient_AgendasName",
+                table: "Patient",
+                column: "AgendasName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patient_PatientName_PhoneNumber_AgendasName",
+                table: "Patient",
+                columns: new[] { "PatientName", "PhoneNumber", "AgendasName" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "AspNetUsers",
+                table: "User",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "AspNetUsers",
+                table: "User",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_PhoneNumber",
+                table: "User",
+                column: "PhoneNumber",
+                unique: true,
+                filter: "[PhoneNumber] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_UserName",
+                table: "User",
+                column: "UserName",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Appointment");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -210,10 +367,19 @@ namespace DoctorsAgenda.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Patient");
+
+            migrationBuilder.DropTable(
+                name: "Calendar");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Agenda");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

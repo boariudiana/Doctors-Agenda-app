@@ -9,21 +9,22 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoctorsAgenda.Migrations
 {
-    [DbContext(typeof(DoctorsAgendaContext))]
-    [Migration("20200708120720_initial")]
+    [DbContext(typeof(DocAgendaContext))]
+    [Migration("20200725172321_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -58,7 +59,7 @@ namespace DoctorsAgenda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -70,10 +71,15 @@ namespace DoctorsAgenda.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -83,7 +89,132 @@ namespace DoctorsAgenda.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Agenda", b =>
+                {
+                    b.Property<int>("AgendaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AgendasName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("AgendaId");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.HasIndex("AgendasName", "UserName")
+                        .IsUnique();
+
+                    b.ToTable("Agenda");
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Appointment", b =>
+                {
+                    b.Property<int>("AppointmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CalendarsName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("EndDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("StartDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TypeOfService")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AppointmentId");
+
+                    b.HasIndex("CalendarsName");
+
+                    b.HasIndex("StartDateTime", "EndDateTime", "PatientName", "CalendarsName")
+                        .IsUnique();
+
+                    b.ToTable("Appointment");
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Calendar", b =>
+                {
+                    b.Property<int>("CalendarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AgendasName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CalendarsName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CalendarId");
+
+                    b.HasIndex("AgendasName")
+                        .IsUnique();
+
+                    b.HasIndex("AgendasName", "CalendarsName")
+                        .IsUnique();
+
+                    b.ToTable("Calendar");
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Patient", b =>
+                {
+                    b.Property<int>("PatientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AgendasName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MedicalStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PatientId");
+
+                    b.HasIndex("AgendasName");
+
+                    b.HasIndex("PatientName", "PhoneNumber", "AgendasName")
+                        .IsUnique();
+
+                    b.ToTable("Patient");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -219,6 +350,46 @@ namespace DoctorsAgenda.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Agenda", b =>
+                {
+                    b.HasOne("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", "User")
+                        .WithOne("Agenda")
+                        .HasForeignKey("DoctorsAgenda.Models.Agenda", "UserName")
+                        .HasPrincipalKey("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", "UserName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Appointment", b =>
+                {
+                    b.HasOne("DoctorsAgenda.Models.Calendar", "Calendar")
+                        .WithMany("Appointments")
+                        .HasForeignKey("CalendarsName")
+                        .HasPrincipalKey("CalendarsName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Calendar", b =>
+                {
+                    b.HasOne("DoctorsAgenda.Models.Agenda", "Agenda")
+                        .WithOne("Calendar")
+                        .HasForeignKey("DoctorsAgenda.Models.Calendar", "AgendasName")
+                        .HasPrincipalKey("DoctorsAgenda.Models.Agenda", "AgendasName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DoctorsAgenda.Models.Patient", b =>
+                {
+                    b.HasOne("DoctorsAgenda.Models.Agenda", "Agenda")
+                        .WithMany("Patients")
+                        .HasForeignKey("AgendasName")
+                        .HasPrincipalKey("AgendasName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
