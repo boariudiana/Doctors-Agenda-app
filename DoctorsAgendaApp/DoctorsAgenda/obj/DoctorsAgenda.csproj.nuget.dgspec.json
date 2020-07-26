@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj": {}
+    "C:\\Users\\Flavius\\gitrepos\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj": {}
   },
   "projects": {
-    "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj": {
+    "C:\\Users\\Flavius\\gitrepos\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
+        "projectUniqueName": "C:\\Users\\Flavius\\gitrepos\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
         "projectName": "DoctorsAgenda",
-        "projectPath": "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
+        "projectPath": "C:\\Users\\Flavius\\gitrepos\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\DoctorsAgenda.csproj",
         "packagesPath": "C:\\Users\\Flavius\\.nuget\\packages\\",
-        "outputPath": "C:\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\obj\\",
+        "outputPath": "C:\\Users\\Flavius\\gitrepos\\Doctors-Agenda-app\\DoctorsAgendaApp\\DoctorsAgenda\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Flavius\\AppData\\Roaming\\NuGet\\NuGet.Config",
