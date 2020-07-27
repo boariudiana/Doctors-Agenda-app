@@ -4,14 +4,16 @@ using DoctorsAgenda.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoctorsAgenda.Migrations
 {
     [DbContext(typeof(DoctorsAgendaContext))]
-    partial class DoctorsAgendaContextModelSnapshot : ModelSnapshot
+    [Migration("20200726101149_RequiredContraints")]
+    partial class RequiredContraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
