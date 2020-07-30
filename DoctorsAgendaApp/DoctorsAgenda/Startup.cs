@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DoctorsAgenda.Data;
 
 namespace DoctorsAgenda
 {
@@ -44,6 +43,8 @@ namespace DoctorsAgenda
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
+
+               
             });
 
             services.ConfigureApplicationCookie(options =>

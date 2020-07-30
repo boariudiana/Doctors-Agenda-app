@@ -1,6 +1,5 @@
 ﻿using System;
 using DoctorsAgenda.Areas.Identity.Data;
-using DoctorsAgenda.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
