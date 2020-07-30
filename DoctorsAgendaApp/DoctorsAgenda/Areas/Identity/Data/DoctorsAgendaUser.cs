@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using DoctorsAgenda.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace DoctorsAgenda.Areas.Identity.Data
@@ -20,5 +22,9 @@ namespace DoctorsAgenda.Areas.Identity.Data
         [Required]
         [NotNull]
         public override string UserName { get => base.UserName; set => base.UserName = value; }
+
+        [NotMapped]
+        public Agenda Agenda { get; set; }
+
     }
 }

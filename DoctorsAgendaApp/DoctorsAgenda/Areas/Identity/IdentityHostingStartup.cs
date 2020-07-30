@@ -1,6 +1,5 @@
 ﻿using System;
 using DoctorsAgenda.Areas.Identity.Data;
-using DoctorsAgenda.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -20,7 +19,7 @@ namespace DoctorsAgenda.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DoctorsAgendaContextConnection")));
 
-                services.AddDefaultIdentity<DoctorsAgendaUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<DoctorsAgendaContext>();
             });
         }
