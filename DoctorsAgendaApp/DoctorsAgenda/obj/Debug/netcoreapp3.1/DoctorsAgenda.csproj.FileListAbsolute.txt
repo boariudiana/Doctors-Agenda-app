@@ -510,3 +510,8 @@ C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\bin\
 C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.csproj.CoreCompileInputs.cache
 C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\DoctorsAgenda.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\Razor\Views\agenda\Create.cshtml.g.cs
+C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\Razor\Views\agenda\Delete.cshtml.g.cs
+C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\Razor\Views\agenda\Details.cshtml.g.cs
+C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\Razor\Views\agenda\Edit.cshtml.g.cs
+C:\Users\Flavius\gitrepos\Doctors-Agenda-app\DoctorsAgendaApp\DoctorsAgenda\obj\Debug\netcoreapp3.1\Razor\Views\agenda\Index.cshtml.g.cs

@@ -61,9 +61,6 @@ namespace DoctorsAgenda.Areas.Identity.Pages.Account
             [Display(Name = "Phone Number")]
             public string PhoneNumber { get; set; }
 
-            [Required]
-            [Display(Name = "User Name")]
-            public string UserName { get; set; }
 
             [Required]
             [EmailAddress]
@@ -98,7 +95,7 @@ namespace DoctorsAgenda.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new DoctorsAgendaUser { UserName = Input.UserName, Email = Input.Email , PhoneNumber = Input.PhoneNumber};
+                var user = new DoctorsAgendaUser { UserName = Input.Email, Email = Input.Email , PhoneNumber = Input.PhoneNumber};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

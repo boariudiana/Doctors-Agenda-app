@@ -11,12 +11,13 @@ namespace DoctorsAgenda.Models
 {
     public class Agenda
     {
+      
         [Key]
         [Required]
         [NotNull]
         [Display(Name = "Doctor's name")]
-        [StringLength(maximumLength: 100)]
-        public string DoctorsName { get; set; }
+        [StringLength(100, MinimumLength = 3)]
+        public string DoctorName { get; set; }
         [NotMapped]
         public List<Patient> Patients { get; set; }
         [NotMapped]
@@ -26,7 +27,9 @@ namespace DoctorsAgenda.Models
         //navigation properties
         [Required]
         [NotNull]
-        public string UserName { get; set; }
+        //[DataType(DataType.EmailAddress)]
+        //[EmailAddress]
+        public string EmailRef { get; set; }
         [NotMapped]
         public DoctorsAgendaUser User { get; set; }
     }

@@ -15,9 +15,14 @@ namespace DoctorsAgenda.Areas.Identity.Data
     {
         [Required]
         [NotNull]
+        //[DataType(DataType.EmailAddress)]
+        //[EmailAddress]
         public override string Email { get => base.Email; set => base.Email = value; }
         [Required]
         [NotNull]
+        //[DataType(DataType.PhoneNumber)]
+        //[Phone]
+        [Display(Name ="Phone Number")]
         public override string PhoneNumber { get => base.PhoneNumber; set => base.PhoneNumber = value; }
         [Required]
         [NotNull]

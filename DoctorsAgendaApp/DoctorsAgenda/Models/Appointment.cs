@@ -16,32 +16,49 @@ namespace DoctorsAgenda.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AppointmentId { get; set; }
 
+
+        [Required]
+        [NotNull]
+        [Display(Name = "Patient's name")]
+        [StringLength(100, MinimumLength = 3)]
+        public string PatientName { get; set; }
+
         [Required]
         [NotNull]
         [Display(Name = "Start")]
         public DateTime StartDateTime { get; set; } = DateTime.Now;
 
-        [Required]
-        [Display(Name = "End")]
+        [Required(ErrorMessage =" Add minutes ")]
         [NotNull]
-        public DateTime EndDateTime { get; set; }
+        public double Minutes { get; set; }
+
+        [Required]
+        [NotNull]
+        [NotMapped]
+        public DateTime EndDateTime
+        {
+            get { return EndDateTime; }
+
+            private set
+            {
+                if (Minutes < 0)
+                {
+                    throw new Exception("Minutes must have positive value");
+                }
+                this.EndDateTime = StartDateTime.AddMinutes(Minutes);
+            }
+        }
 
         [Display(Name = "Type of service")]
         public string TypeOfService { get; set; }
 
         // navigation properties 
-        [Required]
-        [Display(Name = "Patient")]
-        [NotNull]
-        public string PatientName { get; set; }
-        [NotMapped]
-        public Patient Patient { get; set; }
 
         [Required]
         [NotNull]
         [Display(Name = "Doctor's name")]
-        [StringLength(maximumLength: 100)]
-        public string DoctorsName { get; set; }
+        [StringLength(100, MinimumLength = 3)]
+        public string CalendarNameRef { get; set; }
         [NotMapped]
         public Calendar Calendar { get; set; }
     }

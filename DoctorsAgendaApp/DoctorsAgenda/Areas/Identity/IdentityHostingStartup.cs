@@ -14,13 +14,14 @@ namespace DoctorsAgenda.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<DoctorsAgendaContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("DoctorsAgendaContextConnection")));
+            builder.ConfigureServices((context, services) =>
+            {
+                //services.AddDbContext<DoctorsAgendaContext>(options =>
+                //    options.UseSqlServer(
+                //        context.Configuration.GetConnectionString("DoctorsAgendaContextConnection")));
 
-                services.AddDefaultIdentity<DoctorsAgendaUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<DoctorsAgendaContext>();
+                //services.AddDefaultIdentity<DoctorsAgendaUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //    .AddEntityFrameworkStores<DoctorsAgendaContext>();
             });
         }
     }

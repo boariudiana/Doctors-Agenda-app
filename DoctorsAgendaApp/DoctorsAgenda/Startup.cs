@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DoctorsAgenda.Areas.Identity.Data;
 
 namespace DoctorsAgenda
 {
@@ -21,6 +22,14 @@ namespace DoctorsAgenda
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<DoctorsAgendaContext>(options =>
+              options.UseSqlServer(
+                  Configuration.GetConnectionString("DoctorsAgendaContextConnection")));
+            services.AddDefaultIdentity<DoctorsAgendaUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<DoctorsAgendaContext>();
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 

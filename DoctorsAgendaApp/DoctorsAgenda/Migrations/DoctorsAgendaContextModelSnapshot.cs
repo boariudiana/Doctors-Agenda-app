@@ -15,7 +15,7 @@ namespace DoctorsAgenda.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -98,20 +98,20 @@ namespace DoctorsAgenda.Migrations
 
             modelBuilder.Entity("DoctorsAgenda.Models.Agenda", b =>
                 {
-                    b.Property<string>("DoctorsName")
+                    b.Property<string>("DoctorName")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("EmailRef")
                         .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("DoctorsName");
+                    b.HasKey("DoctorName");
 
-                    b.HasIndex("DoctorsName")
+                    b.HasIndex("DoctorName")
                         .IsUnique();
 
-                    b.HasIndex("UserName")
+                    b.HasIndex("EmailRef")
                         .IsUnique();
 
                     b.ToTable("Agenda");
@@ -124,7 +124,7 @@ namespace DoctorsAgenda.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DoctorsName")
+                    b.Property<string>("CalendarNameRef")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
@@ -132,9 +132,13 @@ namespace DoctorsAgenda.Migrations
                     b.Property<DateTime>("EndDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Minutes")
+                        .HasColumnType("float");
+
                     b.Property<string>("PatientName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime2");
@@ -147,9 +151,7 @@ namespace DoctorsAgenda.Migrations
                     b.HasIndex("AppointmentId")
                         .IsUnique();
 
-                    b.HasIndex("PatientName");
-
-                    b.HasIndex("DoctorsName", "PatientName", "StartDateTime", "EndDateTime")
+                    b.HasIndex("CalendarNameRef", "PatientName", "StartDateTime", "EndDateTime")
                         .IsUnique();
 
                     b.ToTable("Appointment");
@@ -162,7 +164,7 @@ namespace DoctorsAgenda.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DoctorsName")
+                    b.Property<string>("DoctorCalendarName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
@@ -172,7 +174,7 @@ namespace DoctorsAgenda.Migrations
                     b.HasIndex("CalendarId")
                         .IsUnique();
 
-                    b.HasIndex("DoctorsName")
+                    b.HasIndex("DoctorCalendarName")
                         .IsUnique();
 
                     b.ToTable("Calendar");
@@ -180,11 +182,12 @@ namespace DoctorsAgenda.Migrations
 
             modelBuilder.Entity("DoctorsAgenda.Models.Patient", b =>
                 {
-                    b.Property<string>("PatientsName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                    b.Property<int>("PatientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DoctorsName")
+                    b.Property<string>("DoctorNameRef")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
@@ -192,16 +195,23 @@ namespace DoctorsAgenda.Migrations
                     b.Property<string>("MedicalStatus")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PatientsName");
+                    b.HasKey("PatientId");
 
-                    b.HasIndex("DoctorsName");
+                    b.HasIndex("DoctorNameRef");
 
-                    b.HasIndex("PatientsName", "PhoneNumber", "DoctorsName")
+                    b.HasIndex("PatientId")
+                        .IsUnique();
+
+                    b.HasIndex("PatientName", "PhoneNumber", "DoctorNameRef")
                         .IsUnique();
 
                     b.ToTable("Patient");
@@ -346,8 +356,8 @@ namespace DoctorsAgenda.Migrations
                 {
                     b.HasOne("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", "User")
                         .WithOne("Agenda")
-                        .HasForeignKey("DoctorsAgenda.Models.Agenda", "UserName")
-                        .HasPrincipalKey("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", "UserName")
+                        .HasForeignKey("DoctorsAgenda.Models.Agenda", "EmailRef")
+                        .HasPrincipalKey("DoctorsAgenda.Areas.Identity.Data.DoctorsAgendaUser", "Email")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -356,15 +366,9 @@ namespace DoctorsAgenda.Migrations
                 {
                     b.HasOne("DoctorsAgenda.Models.Calendar", "Calendar")
                         .WithMany("Appointments")
-                        .HasForeignKey("DoctorsName")
-                        .HasPrincipalKey("DoctorsName")
+                        .HasForeignKey("CalendarNameRef")
+                        .HasPrincipalKey("DoctorCalendarName")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DoctorsAgenda.Models.Patient", "Patient")
-                        .WithMany("Appointments")
-                        .HasForeignKey("PatientName")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -372,7 +376,7 @@ namespace DoctorsAgenda.Migrations
                 {
                     b.HasOne("DoctorsAgenda.Models.Agenda", "Agenda")
                         .WithOne("Calendar")
-                        .HasForeignKey("DoctorsAgenda.Models.Calendar", "DoctorsName")
+                        .HasForeignKey("DoctorsAgenda.Models.Calendar", "DoctorCalendarName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -381,7 +385,7 @@ namespace DoctorsAgenda.Migrations
                 {
                     b.HasOne("DoctorsAgenda.Models.Agenda", "Agenda")
                         .WithMany("Patients")
-                        .HasForeignKey("DoctorsName")
+                        .HasForeignKey("DoctorNameRef")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -23,8 +23,8 @@ namespace DoctorsAgenda.Models
         [Required]
         [NotNull]
         [Display(Name = "Doctor's name")]
-        [StringLength(maximumLength: 100)]
-        public string DoctorsName { get; set; }
+        [StringLength(100, MinimumLength = 3)]
+        public string DoctorCalendarName { get; set; }
         [NotMapped]
         public Agenda Agenda { get; set; }
     }

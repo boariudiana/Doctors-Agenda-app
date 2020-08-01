@@ -16,6 +16,10 @@
     <Compile Remove="Migrations\20200730112118_initial.Designer.cs" />
     <Compile Remove="Migrations\20200730112538_RestrictConstraint.cs" />
     <Compile Remove="Migrations\20200730112538_RestrictConstraint.Designer.cs" />
+    <Compile Remove="Migrations\20200730123551_CascadeDeleteAppointmentTb.cs" />
+    <Compile Remove="Migrations\20200730123551_CascadeDeleteAppointmentTb.Designer.cs" />
+    <Compile Remove="Migrations\20200731102336_AppointmentTableCascadeDelete.cs" />
+    <Compile Remove="Migrations\20200731102336_AppointmentTableCascadeDelete.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

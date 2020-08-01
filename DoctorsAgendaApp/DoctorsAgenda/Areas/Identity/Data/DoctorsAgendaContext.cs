@@ -28,6 +28,7 @@ namespace DoctorsAgenda.Areas.Identity.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
             builder.Entity<DoctorsAgendaUser>().ToTable("User");
             builder.Entity<Appointment>().ToTable("Appointment");
             builder.Entity<Patient>().ToTable("Patient");
@@ -44,62 +45,57 @@ namespace DoctorsAgenda.Areas.Identity.Data
             .HasIndex(d => new { d.PhoneNumber }).IsUnique();
 
             builder.Entity<Patient>()
-            .HasIndex(p => new { p.PatientsName, p.PhoneNumber, p.DoctorsName }).IsUnique(true);
+           .HasIndex(p => new { p.PatientId }).IsUnique();
+
+            builder.Entity<Patient>()
+            .HasIndex(p => new { p.PatientName, p.PhoneNumber, p.DoctorNameRef }).IsUnique(true);
 
             builder.Entity<Patient>()
             .HasOne(p => p.Agenda)
             .WithMany(a => a.Patients)
-            .HasForeignKey(p => p.DoctorsName)
-            .HasPrincipalKey(a => a.DoctorsName)
+            .HasForeignKey(p => p.DoctorNameRef)
+            .HasPrincipalKey(a => a.DoctorName)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
             builder.Entity<Agenda>()
             .HasOne(a => a.User)
             .WithOne(d => d.Agenda)
-            .HasForeignKey<Agenda>(a => a.UserName)
-            .HasPrincipalKey<DoctorsAgendaUser>(d => d.UserName)
+            .HasForeignKey<Agenda>(a => a.EmailRef)
+            .HasPrincipalKey<DoctorsAgendaUser>(d => d.Email)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
             builder.Entity<Agenda>()
-            .HasIndex(a => new { a.UserName }).IsUnique();
+            .HasIndex(a => new { a.EmailRef }).IsUnique();
 
             builder.Entity<Agenda>()
-           .HasIndex(a => new { a.DoctorsName }).IsUnique();
+           .HasIndex(a => new { a.DoctorName }).IsUnique();
 
             builder.Entity<Appointment>()
             .HasIndex(a => new { a.AppointmentId }).IsUnique();
 
             builder.Entity<Appointment>()
-           .HasIndex(a => new { a.DoctorsName, a.PatientName, a.StartDateTime, a.EndDateTime }).IsUnique(true);
-
-            builder.Entity<Appointment>()
-           .HasOne(a => a.Patient)
-           .WithMany(p => p.Appointments)
-           .HasForeignKey(a => a.PatientName)
-           .HasPrincipalKey(p => p.PatientsName)
-           .OnDelete(DeleteBehavior.Restrict)
-           .IsRequired();
+           .HasIndex(a => new { a.CalendarNameRef, a.PatientName, a.StartDateTime, a.EndDateTime }).IsUnique(true);
 
             builder.Entity<Appointment>()
            .HasOne(a => a.Calendar)
            .WithMany(c => c.Appointments)
-           .HasForeignKey(a => a.DoctorsName)
-           .HasPrincipalKey(a => a.DoctorsName)
+           .HasForeignKey(a => a.CalendarNameRef)
+           .HasPrincipalKey(c => c.DoctorCalendarName)
            .OnDelete(DeleteBehavior.Cascade)
            .IsRequired();
 
             builder.Entity<Calendar>()
              .HasOne(c => c.Agenda)
              .WithOne(a => a.Calendar)
-             .HasForeignKey<Calendar>(a => a.DoctorsName)
-             .HasPrincipalKey<Agenda>(d => d.DoctorsName)
+             .HasForeignKey<Calendar>(a => a.DoctorCalendarName)
+             .HasPrincipalKey<Agenda>(d => d.DoctorName)
              .OnDelete(DeleteBehavior.Cascade)
              .IsRequired();
 
             builder.Entity<Calendar>()
-            .HasIndex(c => new { c.DoctorsName }).IsUnique();
+            .HasIndex(c => new { c.DoctorCalendarName }).IsUnique();
 
             builder.Entity<Calendar>()
             .HasIndex(c => new { c.CalendarId }).IsUnique();

@@ -10,30 +10,35 @@ namespace DoctorsAgenda.Models
 {
     public class Patient
     {
-        [Key]
-        [Required]
-        [NotNull]
-        [Display(Name = "Patient's name")]
-        [StringLength(maximumLength: 100)]
-        public string PatientsName { get; set; }
 
         [Required]
         [NotNull]
-        [Display(Name = "Phone number")]
-        [StringLength(maximumLength: 50)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PatientId { get; set; }
+
+        [Required]
+        [NotNull]
+        [Display(Name = "Patient's name")]
+        [StringLength(100, MinimumLength = 3)]
+        public string PatientName { get; set; }
+
+        [NotNull]
+        [Required(ErrorMessage = "Mobile no. is required")]
+        //[DataType(DataType.PhoneNumber)]
+        //[Phone]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "Medical status")]
         public string MedicalStatus { get; set; }
-        [NotMapped]
-        public List<Appointment> Appointments { get; set; }
 
         //navigation properties
         [Required]
         [NotNull]
         [Display(Name = "Doctor's name")]
-        [StringLength(maximumLength: 100)]
-        public string DoctorsName { get; set; }
+        [StringLength(100, MinimumLength = 3)]
+        public string DoctorNameRef { get; set; }
         [NotMapped]
         public Agenda Agenda { get; set; }
 
